@@ -9,21 +9,12 @@ import (
 	"unicode"
 )
 
-func ToLower(s string) string {
-	str := []rune(s)
-	var lower string
-	for _, c := range str {
-	   lower += string(unicode.ToLower(c))
-	}
-	return lower
- }
-
 func main() {
 	fmt.Println("Введите предложение")
 	reader := bufio.NewReader(os.Stdin)
 	text, _ := reader.ReadString('\n')
 
-	var lowerText string = ToLower(text)
+	var lowerText string = strings.ToLower(text)
 	lowerText = strings.Join(strings.Fields(lowerText), "")
 
 	var symbolNumber int
@@ -45,7 +36,7 @@ func main() {
         } else {
             duplicateFrequency[item] = 1
         }
-		symbolPovtor = append(symbolPovtor, duplicateFrequency[item])
+	symbolPovtor = append(symbolPovtor, duplicateFrequency[item])
     }
 
 	var procent = make([]float64, 0, len(lowerText))
@@ -55,7 +46,7 @@ func main() {
 
 	myMap1 := make(map[string]string)
 	for i, key := range keySlice {
-        myMap1[key] = "кол-во повторов - " + strconv.Itoa(symbolPovtor[i])+ " частота в % - " + strconv.FormatFloat(procent[i], 'f', 2, 64)
+		myMap1[key] = "кол-во повторов - " + strconv.Itoa(symbolPovtor[i])+ " частота в % - " + strconv.FormatFloat(procent[i], 'f', 2, 64)
 	}
 	
 	for k, v := range myMap1 {
